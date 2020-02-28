@@ -32,6 +32,8 @@ steps:
     tar -xzvf armadillo-8.400.0.tar.gz
 
     cd armadillo-8.400.0/ && cmake $(CMakeGenerator) \
+    -DBLAS_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
+    -DLAPACK_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
     -DCMAKE_PREFIX:FILEPATH=../../armadillo \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=Release .
