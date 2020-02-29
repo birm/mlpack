@@ -520,6 +520,10 @@ endif()
 # OpenBLAS? (http://www.openblas.net)
 if(BLA_VENDOR STREQUAL "OpenBLAS" OR BLA_VENDOR STREQUAL "All")
   if(NOT BLAS_LIBRARIES)
+    find_package(OpenBLAS)
+    if (OpenBLAS_FOUND)
+      set(BLAS_LIBRARIES ${BLAS_LIBRARIES} ${OpenBLAS_LIBRARIES})
+    endif()
     check_blas_libraries(
       BLAS_LIBRARIES
       BLAS
