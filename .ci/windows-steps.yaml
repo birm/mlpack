@@ -8,7 +8,7 @@ steps:
 
 # Fetch build dependencies
 - powershell: |
-    nuget install OpenBLAS -o $(Agent.ToolsDirectory)
+    nuget install OpenBLAS
     nuget install boost -o $(Agent.ToolsDirectory) -Version 1.60.0
     nuget install boost_unit_test_framework-vc140 -o $(Agent.ToolsDirectory) -Version 1.60.0
     nuget install boost_program_options-vc140 -o $(Agent.ToolsDirectory) -Version 1.60.0
@@ -32,8 +32,6 @@ steps:
     tar -xzvf armadillo-8.400.0.tar.gz
 
     cd armadillo-8.400.0/ && cmake $(CMakeGenerator) \
-    -DBLAS_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
-    -DLAPACK_LIBRARY:FILEPATH=$(Agent.ToolsDirectory)/OpenBLAS.0.2.14.1/lib/native/lib/x64/libopenblas.dll.a \
     -DCMAKE_PREFIX:FILEPATH=../../armadillo \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=Release .
